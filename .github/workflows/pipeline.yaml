@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 on:
   pull_request:
     branches:
-      - main
+      - master
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -71,6 +71,7 @@ jobs:
           LWNlcnRpZmljYXRlOiAvcm9vdC8ubWluaWt1YmUvcHJvZmlsZXMvbWluaWt1YmUvY2xpZW50LmNy
           dAogICAgY2xpZW50LWtleTogL3Jvb3QvLm1pbmlrdWJlL3Byb2ZpbGVzL21pbmlrdWJlL2NsaWVu
           dC5rZXkK}" | base64 --decode > kubeconfig
+
           kubectl --kubeconfig=kubeconfig apply -f k8s/
 
       - name: Notify Gmail - Success
