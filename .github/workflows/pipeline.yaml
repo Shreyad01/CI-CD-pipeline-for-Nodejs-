@@ -45,12 +45,10 @@ jobs:
         env:
           KUBE_CONFIG_DATA:  ${{ secrets.KUBE_CONFIG_DATA }}
         run: |
-          mkdir -p $HOME/.kube
-          echo "${KUBE_CONFIG_DATA}" | base64 -d > $HOME/.kube/config
-          chmod 600 $HOME/.kube/config
-          export KUBECONFIG=$HOME/.kube/config
-
-          kubectl apply -f k8s/
+          TEMP_KUBECONFIG=$(mktemp)
+          echo "${KUBE_CONFIG_DATA}" | base64 -d > $TEMP_KUBECONFIG
+          chmod 600 $TEMP_KUBECONFIG
+          kubectl --kubeconfig=$TEMP_KUBECONFIG apply -f k8s/
 
       - name: Notify on Success
 
