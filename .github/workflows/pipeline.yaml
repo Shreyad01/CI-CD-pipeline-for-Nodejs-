@@ -38,7 +38,7 @@ jobs:
           docker build -t shreyad01/my-nodejs-app:latest .
           docker push shreyad01/my-nodejs-app:latest
       - name: Set up kubectl
-        uses: azure/setup-kubectl@v3
+        uses: action-hub/kubectl@v3
         with:
           version: 'latest'
       - name: Deploy to Kubernetes
@@ -46,7 +46,7 @@ jobs:
           KUBE_CONFIG_DATA:  ${{ secrets.KUBE_CONFIG_DATA }}
         run: |
           echo "${KUBE_CONFIG_DATA}" | base64 --decode > kubeconfig
-          sudo kubectl --kubeconfig=kubeconfig apply -f k8s/
+          kubectl --kubeconfig=kubeconfig apply -f k8s/
 
       - name: Notify Gmail - Success
 
@@ -60,7 +60,7 @@ jobs:
 
           username: ${{ secrets.SMTP_USERNAME }}
           password:  ${{ secrets.SMTP_PASSWORD }}
-          from: ${{ secrets.SMTP_USERNAME }}
+          from: DAPHALSHREYA02@GMAIL.COM
           TO: DAPHALSHREYA1998@GMAIL.COM
           subject: Deployment Success
 
@@ -81,7 +81,7 @@ jobs:
 
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
-          from: ${{ secrets.SMTP_USERNAME }}
+          from: DAPHALSHREYA02@GMAIL.COM
           to: DAPHALSHREYA1998@gmail.com
           subject: Deployment Failure
 
