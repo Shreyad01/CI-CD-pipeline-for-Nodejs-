@@ -43,9 +43,9 @@ jobs:
           version: 'latest'
       - name: Deploy to Kubernetes
         env:
-          KUBE_CONFIG_DATA: ${{ secrets.YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eTogL3Jvb3QvLm1pbmlrdWJlL2NhLmNydAogICAgZXh0ZW5zaW9uczoKICAgIC0gZXh0ZW5zaW9uOgogICAgICAgIGxhc3QtdXBkYXRlOiBTdW4sIDA4IERlYyAyMDI0IDEwOjI1OjQ0IElTVAogICAgICAgIHByb3ZpZGVyOiBtaW5pa3ViZS5zaWdzLms4cy5pbwogICAgICAgIHZlcnNpb246IHYxLjM0LjAKICAgICAgbmFtZTogY2x1c3Rlcl9pbmZvCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTI3LjAuMC4xOjMyNzcxCiAgbmFtZTogbWluaWt1YmUKY29udGV4dHM6Ci0gY29udGV4dDoKICAgIGNsdXN0ZXI6IG1pbmlrdWJlCiAgICBleHRlbnNpb25zOgogICAgLSBleHRlbnNpb246CiAgICAgICAgbGFzdC11cGRhdGU6IFN1biwgMDggRGVjIDIwMjQgMTA6MjU6NDQgSVNUCiAgICAgICAgcHJvdmlkZXI6IG1pbmlrdWJlLnNpZ3MuazhzLmlvCiAgICAgICAgdmVyc2lvbjogdjEuMzQuMAogICAgICBuYW1lOiBjb250ZXh0X2luZm8KICAgIG5hbWVzcGFjZTogZGVmYXVsdAogICAgdXNlcjogbWluaWt1YmUKICBuYW1lOiBtaW5pa3ViZQpjdXJyZW50LWNvbnRleHQ6IG1pbmlrdWJlCmtpbmQ6IENvbmZpZwpwcmVmZXJlbmNlczoge30KdXNlcnM6Ci0gbmFtZTogbWluaWt1YmUKICB1c2VyOgogICAgY2xpZW50LWNlcnRpZmljYXRlOiAvcm9vdC8ubWluaWt1YmUvcHJvZmlsZXMvbWluaWt1YmUvY2xpZW50LmNydAogICAgY2xpZW50LWtleTogL3Jvb3QvLm1pbmlrdWJlL3Byb2ZpbGVzL21pbmlrdWJlL2NsaWVudC5rZXkK }}
+          KUBE_CONFIG_DATA: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eTogL3Jvb3QvLm1pbmlrdWJlL2NhLmNydAogICAgZXh0ZW5zaW9uczoKICAgIC0gZXh0ZW5zaW9uOgogICAgICAgIGxhc3QtdXBkYXRlOiBTdW4sIDA4IERlYyAyMDI0IDEwOjI1OjQ0IElTVAogICAgICAgIHByb3ZpZGVyOiBtaW5pa3ViZS5zaWdzLms4cy5pbwogICAgICAgIHZlcnNpb246IHYxLjM0LjAKICAgICAgbmFtZTogY2x1c3Rlcl9pbmZvCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTI3LjAuMC4xOjMyNzcxCiAgbmFtZTogbWluaWt1YmUKY29udGV4dHM6Ci0gY29udGV4dDoKICAgIGNsdXN0ZXI6IG1pbmlrdWJlCiAgICBleHRlbnNpb25zOgogICAgLSBleHRlbnNpb246CiAgICAgICAgbGFzdC11cGRhdGU6IFN1biwgMDggRGVjIDIwMjQgMTA6MjU6NDQgSVNUCiAgICAgICAgcHJvdmlkZXI6IG1pbmlrdWJlLnNpZ3MuazhzLmlvCiAgICAgICAgdmVyc2lvbjogdjEuMzQuMAogICAgICBuYW1lOiBjb250ZXh0X2luZm8KICAgIG5hbWVzcGFjZTogZGVmYXVsdAogICAgdXNlcjogbWluaWt1YmUKICBuYW1lOiBtaW5pa3ViZQpjdXJyZW50LWNvbnRleHQ6IG1pbmlrdWJlCmtpbmQ6IENvbmZpZwpwcmVmZXJlbmNlczoge30KdXNlcnM6Ci0gbmFtZTogbWluaWt1YmUKICB1c2VyOgogICAgY2xpZW50LWNlcnRpZmljYXRlOiAvcm9vdC8ubWluaWt1YmUvcHJvZmlsZXMvbWluaWt1YmUvY2xpZW50LmNydAogICAgY2xpZW50LWtleTogL3Jvb3QvLm1pbmlrdWJlL3Byb2ZpbGVzL21pbmlrdWJlL2NsaWVudC5rZXkK
         run: |
-          echo "${YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eTogL3Jvb3QvLm1pbmlrdWJlL2NhLmNydAogICAgZXh0ZW5zaW9uczoKICAgIC0gZXh0ZW5zaW9uOgogICAgICAgIGxhc3QtdXBkYXRlOiBTdW4sIDA4IERlYyAyMDI0IDEwOjI1OjQ0IElTVAogICAgICAgIHByb3ZpZGVyOiBtaW5pa3ViZS5zaWdzLms4cy5pbwogICAgICAgIHZlcnNpb246IHYxLjM0LjAKICAgICAgbmFtZTogY2x1c3Rlcl9pbmZvCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTI3LjAuMC4xOjMyNzcxCiAgbmFtZTogbWluaWt1YmUKY29udGV4dHM6Ci0gY29udGV4dDoKICAgIGNsdXN0ZXI6IG1pbmlrdWJlCiAgICBleHRlbnNpb25zOgogICAgLSBleHRlbnNpb246CiAgICAgICAgbGFzdC11cGRhdGU6IFN1biwgMDggRGVjIDIwMjQgMTA6MjU6NDQgSVNUCiAgICAgICAgcHJvdmlkZXI6IG1pbmlrdWJlLnNpZ3MuazhzLmlvCiAgICAgICAgdmVyc2lvbjogdjEuMzQuMAogICAgICBuYW1lOiBjb250ZXh0X2luZm8KICAgIG5hbWVzcGFjZTogZGVmYXVsdAogICAgdXNlcjogbWluaWt1YmUKICBuYW1lOiBtaW5pa3ViZQpjdXJyZW50LWNvbnRleHQ6IG1pbmlrdWJlCmtpbmQ6IENvbmZpZwpwcmVmZXJlbmNlczoge30KdXNlcnM6Ci0gbmFtZTogbWluaWt1YmUKICB1c2VyOgogICAgY2xpZW50LWNlcnRpZmljYXRlOiAvcm9vdC8ubWluaWt1YmUvcHJvZmlsZXMvbWluaWt1YmUvY2xpZW50LmNydAogICAgY2xpZW50LWtleTogL3Jvb3QvLm1pbmlrdWJlL3Byb2ZpbGVzL21pbmlrdWJlL2NsaWVudC5rZXkK}" | base64 --decode > kubeconfig
+          echo "YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eTogL3Jvb3QvLm1pbmlrdWJlL2NhLmNydAogICAgZXh0ZW5zaW9uczoKICAgIC0gZXh0ZW5zaW9uOgogICAgICAgIGxhc3QtdXBkYXRlOiBTdW4sIDA4IERlYyAyMDI0IDEwOjI1OjQ0IElTVAogICAgICAgIHByb3ZpZGVyOiBtaW5pa3ViZS5zaWdzLms4cy5pbwogICAgICAgIHZlcnNpb246IHYxLjM0LjAKICAgICAgbmFtZTogY2x1c3Rlcl9pbmZvCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTI3LjAuMC4xOjMyNzcxCiAgbmFtZTogbWluaWt1YmUKY29udGV4dHM6Ci0gY29udGV4dDoKICAgIGNsdXN0ZXI6IG1pbmlrdWJlCiAgICBleHRlbnNpb25zOgogICAgLSBleHRlbnNpb246CiAgICAgICAgbGFzdC11cGRhdGU6IFN1biwgMDggRGVjIDIwMjQgMTA6MjU6NDQgSVNUCiAgICAgICAgcHJvdmlkZXI6IG1pbmlrdWJlLnNpZ3MuazhzLmlvCiAgICAgICAgdmVyc2lvbjogdjEuMzQuMAogICAgICBuYW1lOiBjb250ZXh0X2luZm8KICAgIG5hbWVzcGFjZTogZGVmYXVsdAogICAgdXNlcjogbWluaWt1YmUKICBuYW1lOiBtaW5pa3ViZQpjdXJyZW50LWNvbnRleHQ6IG1pbmlrdWJlCmtpbmQ6IENvbmZpZwpwcmVmZXJlbmNlczoge30KdXNlcnM6Ci0gbmFtZTogbWluaWt1YmUKICB1c2VyOgogICAgY2xpZW50LWNlcnRpZmljYXRlOiAvcm9vdC8ubWluaWt1YmUvcHJvZmlsZXMvbWluaWt1YmUvY2xpZW50LmNydAogICAgY2xpZW50LWtleTogL3Jvb3QvLm1pbmlrdWJlL3Byb2ZpbGVzL21pbmlrdWJlL2NsaWVudC5rZXkK" | base64 --decode > kubeconfig
 
           kubectl --kubeconfig=kubeconfig apply -f k8s/
 
@@ -59,10 +59,10 @@ jobs:
 
           server_port: 465
 
-          username: ${{ secrets.DAPHALSHREYA02 }}
-          password: ${{ secrets.SHREYA123}}
-          from: ${{secrets.DAPHALSHREYA1998}}
-          TO: ${{secrets.DAPHALSHREYA02}}
+          username: DAPHALSHREYA02
+          password: SHREYA123
+          from: DAPHALSHREYA1998
+          TO: DAPHALSHREYA02
           subject: Deployment Success
 
           body: |
@@ -80,10 +80,10 @@ jobs:
 
           server_port: 465
 
-          username: ${{ secrets.DAPHALSHREYA02 }}
-          password: ${{ secrets.SHREYA123}}
-          from: ${{secrets.DAPHALSHREYA1998}}
-          to: ${{secrets.DAPHALSHREYA02}}
+          username: DAPHALSHREYA02
+          password: SHREYA123
+          from: DAPHALSHREYA1998
+          to: DAPHALSHREYA02
           subject: Deployment Failure
 
           body: |
