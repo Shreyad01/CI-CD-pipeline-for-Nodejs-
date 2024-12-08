@@ -45,47 +45,23 @@ jobs:
         env:
           KUBE_CONFIG_DATA:  ${{ secrets.KUBE_CONFIG_DATA }}
         run: |
-          echo "${KUBE_CONFIG_DATA}" | base64 --decode > kubeconfig
+          echo "${KUBE_CONFIG_DATA}" > kubeconfig
           kubectl --kubeconfig=kubeconfig apply -f k8s/
 
-      - name: Notify Gmail - Success
+      - name: Notify on Success
 
-        if: success()
-        uses: dawidd6/action-send-mail@v3
-
-        with:
-          server_address: smtp.gmail.com
-
-          server_port: 465
-
-          username: ${{ secrets.SMTP_USERNAME }}
-          password:  ${{ secrets.SMTP_PASSWORD }}
-          from: DAPHALSHREYA02@GMAIL.COM
-          TO: DAPHALSHREYA1998@GMAIL.COM
-          subject: Deployment Success
-
-          body: |
-            The deployment was successful.
-            Repository: ${{ github.repository }}
-            Commit: ${{ github.sha }}
-
-      - name: Notify Gmail - Failure
-
-        if: failure()
-        uses: dawidd6/action-send-mail@v3
+        if: ${{success() }}
+        uses: slackapi/slack-github-action@v1.23.0
 
         with:
-          server_address: smtp.gmail.com
+          slack-webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
+          message: "Deployment of Node.js app was successful !"
+      
+      - name: Notify on Failure
 
-          server_port: 465
+        if: ${{failure() }}
+        uses: slackapi/slack-github-action@v1.23.0
 
-          username: ${{ secrets.SMTP_USERNAME }}
-          password: ${{ secrets.SMTP_PASSWORD }}
-          from: DAPHALSHREYA02@GMAIL.COM
-          to: DAPHALSHREYA1998@gmail.com
-          subject: Deployment Failure
-
-          body: |
-            The deployment failed.
-            Repository: ${{ github.repository }}
-            Commit: ${{ github.sha }}
+        with:
+          slack-webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
+          messsage: "Deployment of Node.js app faild !"
