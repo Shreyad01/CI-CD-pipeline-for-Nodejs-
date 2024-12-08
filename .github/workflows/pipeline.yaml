@@ -45,23 +45,17 @@ jobs:
         env:
           KUBE_CONFIG_DATA:  ${{ secrets.KUBE_CONFIG_DATA }}
         run: |
-          echo "${KUBE_CONFIG_DATA}" > kubeconfig
+          echo "${KUBE_CONFIG_DATA}" | base64 --decode > kubeconfig
           kubectl --kubeconfig=kubeconfig apply -f k8s/
 
       - name: Notify on Success
 
-        if: ${{success() }}
-        uses: slackapi/slack-github-action@v1.23.0
+        if: success()
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Deployment Success: Repository: ${{ github.repository }}, Commit: ${{ github.sha }}"}' ${{ secrets.SLACK_WEBHOOK_URL }}
 
-        with:
-          slack-webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
-          message: "Deployment of Node.js app was successful !"
-      
-      - name: Notify on Failure
+      - name: Notify Slack - Failure
 
-        if: ${{failure() }}
-        uses: slackapi/slack-github-action@v1.23.0
-
-        with:
-          slack-webhook-url: ${{secrets.SLACK_WEBHOOK_URL}}
-          messsage: "Deployment of Node.js app faild !"
+        if: failure()
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Deployment Failure: Repository: ${{ github.repository }}, Commit: ${{ github.sha }}"}' ${{ secrets.SLACK_WEBHOOK_URL }}
