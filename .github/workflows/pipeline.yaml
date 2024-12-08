@@ -59,8 +59,8 @@ jobs:
 
           server_port: 465
 
-          username: ${{ secrets.daphalshreya1998@ }}
-          password: ${{ secrets.Shreya@123 }}
+          username: ${{ secrets.DAPHALSHREYA02 }}
+          password: ${{ secrets.SHREYA123}}
           subject: Deployment Success
 
           body: |
@@ -80,8 +80,8 @@ jobs:
 
           server_port: 465
 
-          username: ${{ secrets.daphalshreya1998@ }}
-          password: ${{ secrets.Shreya@123 }}
+          username: ${{ secrets.DAPHALSHREYA02 }}
+          password: ${{ secrets.SHREYA123}}
           subject: Deployment Failure
 
           body: |
