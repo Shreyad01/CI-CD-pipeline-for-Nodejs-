@@ -45,8 +45,10 @@ jobs:
         env:
           KUBE_CONFIG_DATA:  ${{ secrets.KUBE_CONFIG_DATA }}
         run: |
-          echo "${KUBE_CONFIG_DATA}" | base64 --decode > kubeconfig
-          kubectl --kubeconfig=kubeconfig apply -f k8s/
+          mkdir -p /mnt/c/Users/ShivSwayambhu/Desktop/Assesment/.kube
+          echo "${KUBE_CONFIG_DATA}" | base64 -d > /mnt/c/Users/ShivSwayambhu/Desktop/Assesment/.kube/config
+          chmod 600 /mnt/c/Users/ShivSwayambhu/Desktop/Assesment/.kube/config
+          kubectl apply -f k8s/
 
       - name: Notify on Success
 
