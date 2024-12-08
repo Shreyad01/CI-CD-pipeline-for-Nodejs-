@@ -38,25 +38,25 @@ jobs:
           docker build -t shreyad01/my-nodejs-app:latest .
           docker push shreyad01/my-nodejs-app:latest
       - name: Set up kubectl
-        uses: azure/setup-kubectl@v4
+        uses: azure/setup-kubectl@v3
         with:
-          version: 'latest'
+          version: 'v1.31.3'
       - name: Deploy to Kubernetes
         env:
           KUBE_CONFIG_DATA:  ${{ secrets.KUBE_CONFIG_DATA }}
         run: |
-           TEMP_KUBECONFIG=$(mktemp)
+          TEMP_KUBECONFIG=$(mktemp)
           echo "${KUBE_CONFIG_DATA}" | base64 -d > $TEMP_KUBECONFIG
           chmod 600 $TEMP_KUBECONFIG
-          kubectl --kubeconfig= $TEMP_KUBECONFIG apply -f k8s/
+          kubectl --kubeconfig=$TEMP_KUBECONFIG apply -f k8s/
 
       - name: Notify on Success
 
-        if: success()
+         if: success()
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{"text":"Deployment Success: Repository: ${{ github.repository }}, Commit: ${{ github.sha }}"}' ${{ secrets.SLACK_WEBHOOK_URL }}
 
-      - name: Notify Slack - Failure
+      - name: Notify on Failure
 
         if: failure()
         run: |
