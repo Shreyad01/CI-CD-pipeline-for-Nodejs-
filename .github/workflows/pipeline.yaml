@@ -38,9 +38,9 @@ jobs:
           docker build -t shreyad01/my-nodejs-app:latest .
           docker push shreyad01/my-nodejs-app:latest
       - name: Set up kubectl
-        uses: action-hub/kubectl@v3
+        uses: azure/setup-kubectl@v3
         with:
-          version: 'latest'
+          version: 'v1.31.3'
       - name: Deploy to Kubernetes
         env:
           KUBE_CONFIG_DATA:  ${{ secrets.KUBE_CONFIG_DATA }}
