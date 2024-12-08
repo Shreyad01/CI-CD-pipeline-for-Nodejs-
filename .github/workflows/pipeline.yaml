@@ -1,0 +1,127 @@
+name: CI/CD Pipeline
+
+
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+  build-and-deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.shreyad01 }}
+          password: ${{ secrets.dckr_pat_ercprqblbWzTxe4voWorbDWLq9o }}
+
+      - name: Build and push Docker image
+
+        run: |
+          docker build -t shreyad01/my-nodejs-app:latest .
+          docker push shreyad01/my-nodejs-app:latest
+
+
+      - name: Set up kubectl
+
+        uses: actions-hub/kubectl@v1
+
+        with:
+          version: '1.18.0'
+
+      - name: Deploy to Kubernetes
+
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhv
+cml0eTogL3Jvb3QvLm1pbmlrdWJlL2NhLmNydAogICAgZXh0ZW5zaW9uczoKICAgIC0gZXh0ZW5z
+aW9uOgogICAgICAgIGxhc3QtdXBkYXRlOiBTdW4sIDA4IERlYyAyMDI0IDEwOjI1OjQ0IElTVAog
+ICAgICAgIHByb3ZpZGVyOiBtaW5pa3ViZS5zaWdzLms4cy5pbwogICAgICAgIHZlcnNpb246IHYx
+LjM0LjAKICAgICAgbmFtZTogY2x1c3Rlcl9pbmZvCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTI3LjAu
+MC4xOjMyNzcxCiAgbmFtZTogbWluaWt1YmUKY29udGV4dHM6Ci0gY29udGV4dDoKICAgIGNsdXN0
+ZXI6IG1pbmlrdWJlCiAgICBleHRlbnNpb25zOgogICAgLSBleHRlbnNpb246CiAgICAgICAgbGFz
+dC11cGRhdGU6IFN1biwgMDggRGVjIDIwMjQgMTA6MjU6NDQgSVNUCiAgICAgICAgcHJvdmlkZXI6
+IG1pbmlrdWJlLnNpZ3MuazhzLmlvCiAgICAgICAgdmVyc2lvbjogdjEuMzQuMAogICAgICBuYW1l
+OiBjb250ZXh0X2luZm8KICAgIG5hbWVzcGFjZTogZGVmYXVsdAogICAgdXNlcjogbWluaWt1YmUK
+ICBuYW1lOiBtaW5pa3ViZQpjdXJyZW50LWNvbnRleHQ6IG1pbmlrdWJlCmtpbmQ6IENvbmZpZwpw
+cmVmZXJlbmNlczoge30KdXNlcnM6Ci0gbmFtZTogbWluaWt1YmUKICB1c2VyOgogICAgY2xpZW50
+LWNlcnRpZmljYXRlOiAvcm9vdC8ubWluaWt1YmUvcHJvZmlsZXMvbWluaWt1YmUvY2xpZW50LmNy
+dAogICAgY2xpZW50LWtleTogL3Jvb3QvLm1pbmlrdWJlL3Byb2ZpbGVzL21pbmlrdWJlL2NsaWVu
+dC5rZXkK }}
+        run: |
+          echo "${YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhv
+cml0eTogL3Jvb3QvLm1pbmlrdWJlL2NhLmNydAogICAgZXh0ZW5zaW9uczoKICAgIC0gZXh0ZW5z
+aW9uOgogICAgICAgIGxhc3QtdXBkYXRlOiBTdW4sIDA4IERlYyAyMDI0IDEwOjI1OjQ0IElTVAog
+ICAgICAgIHByb3ZpZGVyOiBtaW5pa3ViZS5zaWdzLms4cy5pbwogICAgICAgIHZlcnNpb246IHYx
+LjM0LjAKICAgICAgbmFtZTogY2x1c3Rlcl9pbmZvCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTI3LjAu
+MC4xOjMyNzcxCiAgbmFtZTogbWluaWt1YmUKY29udGV4dHM6Ci0gY29udGV4dDoKICAgIGNsdXN0
+ZXI6IG1pbmlrdWJlCiAgICBleHRlbnNpb25zOgogICAgLSBleHRlbnNpb246CiAgICAgICAgbGFz
+dC11cGRhdGU6IFN1biwgMDggRGVjIDIwMjQgMTA6MjU6NDQgSVNUCiAgICAgICAgcHJvdmlkZXI6
+IG1pbmlrdWJlLnNpZ3MuazhzLmlvCiAgICAgICAgdmVyc2lvbjogdjEuMzQuMAogICAgICBuYW1l
+OiBjb250ZXh0X2luZm8KICAgIG5hbWVzcGFjZTogZGVmYXVsdAogICAgdXNlcjogbWluaWt1YmUK
+ICBuYW1lOiBtaW5pa3ViZQpjdXJyZW50LWNvbnRleHQ6IG1pbmlrdWJlCmtpbmQ6IENvbmZpZwpw
+cmVmZXJlbmNlczoge30KdXNlcnM6Ci0gbmFtZTogbWluaWt1YmUKICB1c2VyOgogICAgY2xpZW50
+LWNlcnRpZmljYXRlOiAvcm9vdC8ubWluaWt1YmUvcHJvZmlsZXMvbWluaWt1YmUvY2xpZW50LmNy
+dAogICAgY2xpZW50LWtleTogL3Jvb3QvLm1pbmlrdWJlL3Byb2ZpbGVzL21pbmlrdWJlL2NsaWVu
+dC5rZXkK}" | base64 --decode > kubeconfig
+
+          kubectl --kubeconfig=kubeconfig apply -f k8s/
+
+      - name: Notify Gmail - Success
+
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+
+        with:
+          server_address: smtp.gmail.com
+
+          server_port: 465
+
+          username: ${{ secrets.sd@mailsac.com }}
+          password: ${{ secrets.Arrow123456* }}
+          subject: Deployment Success
+
+          body: |
+            The deployment was successful.
+            Repository: ${{ github.repository }}
+            Commit: ${{ github.sha }}
+        env:
+          TO: ${{ secrets.NOTIFY_EMAIL }}
+
+      - name: Notify Gmail - Failure
+
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+
+        with:
+          server_address: smtp.gmail.com
+
+          server_port: 465
+
+          username: ${{ secrets.sd@mailsac.com }}
+          password: ${{ secrets.Arrow123456* }}
+          subject: Deployment Failure
+
+          body: |
+            The deployment failed.
+            Repository: ${{ github.repository }}
+            Commit: ${{ github.sha }}
+        env:
+          TO: ${{ secrets.NOTIFY_EMAIL }}
