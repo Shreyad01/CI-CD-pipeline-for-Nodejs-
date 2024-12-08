@@ -52,7 +52,7 @@ jobs:
 
       - name: Notify on Success
 
-         if: success()
+        if: success()
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{"text":"Deployment Success: Repository: ${{ github.repository }}, Commit: ${{ github.sha }}"}' ${{ secrets.SLACK_WEBHOOK_URL }}
 
