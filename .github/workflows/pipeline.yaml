@@ -58,8 +58,8 @@ jobs:
 
           server_port: 465
 
-          username: DAPHALSHREYA02@gmail.com
-          password: SHREYA_123
+          username: ${{ secrets.SMTP_USERNAME }}
+          password:  ${{ secrets.SMTP_PASSWORD }}
           from: DAPHALSHREYA1998@gmail.com
           TO: DAPHALSHREYA02@gmail.com
           subject: Deployment Success
@@ -79,8 +79,8 @@ jobs:
 
           server_port: 465
 
-          username: DAPHALSHREYA02@gmail.com
-          password: SHREYA_123
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
           from: DAPHALSHREYA1998@gmail.com
           to: DAPHALSHREYA02@gmail.com
           subject: Deployment Failure
