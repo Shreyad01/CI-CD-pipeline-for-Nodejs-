@@ -31,8 +31,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.shreyad01 }}
-          password: ${{ secrets.dckr_pat_ercprqblbWzTxe4voWorbDWLq9o }}
+          username: shreyad01
+          password: dckr_pat_ercprqblbWzTxe4voWorbDWLq9o
       - name: Build and push Docker image
         run: |
           docker build -t shreyad01/my-nodejs-app:latest .
