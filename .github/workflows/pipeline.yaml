@@ -27,9 +27,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - name: Log in to Docker Hub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.shreyad01 }}
           password: ${{ secrets.dckr_pat_ercprqblbWzTxe4voWorbDWLq9o }}
@@ -61,14 +61,14 @@ jobs:
 
           username: ${{ secrets.DAPHALSHREYA02 }}
           password: ${{ secrets.SHREYA123}}
+          from: ${{secrets.DAPHALSHREYA1998}}
+          TO: ${{secrets.DAPHALSHREYA02}}
           subject: Deployment Success
 
           body: |
             The deployment was successful.
             Repository: ${{ github.repository }}
             Commit: ${{ github.sha }}
-        env:
-          TO: ${{ secrets.NOTIFY_EMAIL }}
 
       - name: Notify Gmail - Failure
 
@@ -82,11 +82,11 @@ jobs:
 
           username: ${{ secrets.DAPHALSHREYA02 }}
           password: ${{ secrets.SHREYA123}}
+          from: ${{secrets.DAPHALSHREYA1998}}
+          to: ${{secrets.DAPHALSHREYA02}}
           subject: Deployment Failure
 
           body: |
             The deployment failed.
             Repository: ${{ github.repository }}
             Commit: ${{ github.sha }}
-        env:
-          TO: ${{ secrets.NOTIFY_EMAIL }}
