@@ -40,7 +40,7 @@ jobs:
       - name: Set up kubectl
         uses: azure/setup-kubectl@v3
         with:
-          version: 'v1.31.3'
+          version: 'latest'
       - name: Deploy to Kubernetes
         env:
           KUBE_CONFIG_DATA:  ${{ secrets.KUBE_CONFIG_DATA }}
