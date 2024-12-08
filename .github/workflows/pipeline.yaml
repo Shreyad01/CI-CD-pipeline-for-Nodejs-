@@ -43,7 +43,7 @@ jobs:
           version: 'latest'
       - name: Deploy to Kubernetes
         env:
-          KUBE_CONFIG_DATA:  ${{ secrets.KUBECONFIG }}
+          KUBE_CONFIG_DATA:  ${{ secrets.KUBE_CONFIG_DATA }}
         run: |
           echo "${KUBE_CONFIG_DATA}" | base64 --decode > kubeconfig
           sudo kubectl --kubeconfig=kubeconfig apply -f k8s/
@@ -60,8 +60,8 @@ jobs:
 
           username: ${{ secrets.SMTP_USERNAME }}
           password:  ${{ secrets.SMTP_PASSWORD }}
-          from: DAPHALSHREYA1998@gmail.com
-          TO: DAPHALSHREYA02@gmail.com
+          from: ${{ secrets.SMTP_USERNAME }}
+          TO: DAPHALSHREYA1998@GMAIL.COM
           subject: Deployment Success
 
           body: |
@@ -81,8 +81,8 @@ jobs:
 
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
-          from: DAPHALSHREYA1998@gmail.com
-          to: DAPHALSHREYA02@gmail.com
+          from: ${{ secrets.SMTP_USERNAME }}
+          to: DAPHALSHREYA1998@gmail.com
           subject: Deployment Failure
 
           body: |
